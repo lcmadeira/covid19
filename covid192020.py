@@ -1,10 +1,15 @@
-
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++   #Código adaptado após consulta de varios tuturiais publicados na web
++   #Código para obtenção de dados actuais sobre os casos confirmados de Covid19
++   #Em actualização...
++   ------------------------
++   #Twitter: @lcmadeira / @uedbn
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 import pandas as pd
 import geopandas as gpd
 
 #Importar dados do https://www.worldometers.info/coronavirus/
-
 dados = pd.read_html('https://www.worldometers.info/coronavirus/')
 #print(dados) -> dados do tipo lista
 
@@ -17,7 +22,7 @@ for dados_casos in dados:
 dados_casos = dados_casos[['Country,Other', 'TotalCases', 'TotalDeaths', 'TotalRecovered']]
 
 #Importar Mapa Mundo(.shp)
-mapa_shp = gpd.read_file(r'/home/madeira/python/geopandas/code/covid19/shp/World_Map.shp')
+mapa_shp = gpd.read_file(r'caminho para o shapefile')
 
 #Verificar concordancia dos nomes dos paises entre os dois ficheiros
 for paises in dados_casos['Country,Other'].tolist():
@@ -44,11 +49,11 @@ mapa_shp.replace('Republic of Moldova', 'Moldova', inplace =  True)
 dados_casos.rename(columns = {'Country,Other': 'NAME'}, inplace = True)
 
 #Exportar tabela em formato .csv (Opcional)
-#dados_casos.to_csv(r'/home/madeira/python/geopandas/code/covid19/shp/TotalCases_Covid19.csv')
+#dados_casos.to_csv(r'caminho para guardar o ficheiro .csv')
 
 #Merge entre dados_casos e mapa_shp
 merge = mapa_shp.merge(dados_casos, on = 'NAME')
 #print(merge)
 
 #Exportar o Merge para .shp
-merge.to_file(r'/home/madeira/python/geopandas/code/covid19/shp/TotalCases_Covid19.shp')
+merge.to_file(r'caminho onde vai ser guardado o *.shp')
