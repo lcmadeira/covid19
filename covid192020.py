@@ -10,10 +10,10 @@ import pandas as pd
 import geopandas as gpd
 
 #Importar dados do https://www.worldometers.info/coronavirus/
-dados = pd.read_html('https://www.worldometers.info/coronavirus/')
-#print(dados) -> dados do tipo lista
 
-#Converter a Lista para DataFrame
+dados = pd.read_html('https://www.worldometers.info/coronavirus/')
+#print(dados)
+
 for dados_casos in dados:
     print(dados_casos)
 
@@ -21,8 +21,12 @@ for dados_casos in dados:
 #Ficam apenas as colunas "Country,Other", "TotalCases", "TotalDeaths" e "TotalRecovered"
 dados_casos = dados_casos[['Country,Other', 'TotalCases', 'TotalDeaths', 'TotalRecovered']]
 
+#Adicionar campos de Percentagem(Mortes e Recuperados) em relação ao total de casos
+dados_casos['PercDeaths'] = (dados_casos.TotalDeaths / dados_casos.TotalCases)*100
+dados_casos['PercRecov'] = (dados_casos.TotalRecovered / dados_casos.TotalCases)*100
+
 #Importar Mapa Mundo(.shp)
-mapa_shp = gpd.read_file(r'caminho para o shapefile')
+mapa_shp = gpd.read_file(r'caminho onde está localizado o.shp')
 
 #Verificar concordancia dos nomes dos paises entre os dois ficheiros
 for paises in dados_casos['Country,Other'].tolist():
@@ -50,11 +54,11 @@ mapa_shp.replace('Holy See (Vatican City)', 'Vatican City', inplace = True)
 dados_casos.rename(columns = {'Country,Other': 'NAME'}, inplace = True)
 
 #Exportar tabela em formato .csv (Opcional)
-#dados_casos.to_csv(r'caminho para guardar o ficheiro .csv')
+#dados_casos.to_csv(r'caminho onde vai ser guardado o.csv')
 
 #Merge entre dados_casos e mapa_shp
 merge = mapa_shp.merge(dados_casos, on = 'NAME')
 #print(merge)
 
 #Exportar o Merge para .shp
-merge.to_file(r'caminho onde vai ser guardado o *.shp')
+merge.to_file(r'caminho onde vai ser guardado o.shp')
