@@ -48,7 +48,10 @@ mapa_shp.replace('The former Yugoslav Republic of Macedonia', 'North Macedonia',
 mapa_shp.replace('Czech Republic', 'Czechia', inplace = True)
 mapa_shp.replace('Palestine', 'State of Palestine', inplace = True)
 mapa_shp.replace('Republic of Moldova', 'Moldova', inplace =  True)
-mapa_shp.replace('Holy See (Vatican City)', 'Vatican City', inplace = True)
+mapa_shp.replace('Brunei Darussalam', 'Brunei', inplace = True)
+mapa_shp.replace('Faroe Islands', 'Faeroe Islands', inplace = True)
+mapa_shp.replace('Reunion', 'Réunion', inplace = True)
+mapa_shp.replace('Saint Barthelemy', 'St. Barth', inplace = True)
 
 #Renomear o nome da coluna(Paises) no ficheiro dados_casos
 dados_casos.rename(columns = {'Country,Other': 'NAME'}, inplace = True)
