@@ -40,8 +40,8 @@ for paises in dados_casos['Country,Other'].tolist():
 mapa_shp.replace('Korea, Republic of', 'S. Korea', inplace = True)
 mapa_shp.replace('Iran (Islamic Republic of)', 'Iran', inplace = True)
 mapa_shp.replace('United States', 'USA', inplace = True)
-mapa_shp.replace('United Kingdom', 'U.K.', inplace = True)
-mapa_shp.replace('United Arab Emirates', 'U.A.E.', inplace = True)
+mapa_shp.replace('United Kingdom', 'UK', inplace = True)
+mapa_shp.replace('United Arab Emirates', 'UAE', inplace = True)
 mapa_shp.replace('Viet Nam', 'Vietnam', inplace = True)
 mapa_shp.replace('Macau', 'Macao', inplace = True)
 mapa_shp.replace('The former Yugoslav Republic of Macedonia', 'North Macedonia', inplace = True)
@@ -52,6 +52,7 @@ mapa_shp.replace('Brunei Darussalam', 'Brunei', inplace = True)
 mapa_shp.replace('Faroe Islands', 'Faeroe Islands', inplace = True)
 mapa_shp.replace('Reunion', 'Réunion', inplace = True)
 mapa_shp.replace('Saint Barthelemy', 'St. Barth', inplace = True)
+mapa_shp.replace('Saint Vincent and the Grenadines', 'St. Vincent Grenadines', inplace = True)
 
 #Renomear o nome da coluna(Paises) no ficheiro dados_casos
 dados_casos.rename(columns = {'Country,Other': 'NAME'}, inplace = True)
