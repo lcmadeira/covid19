@@ -53,6 +53,7 @@ mapa_shp.replace('Faroe Islands', 'Faeroe Islands', inplace = True)
 mapa_shp.replace('Reunion', 'Réunion', inplace = True)
 mapa_shp.replace('Saint Barthelemy', 'St. Barth', inplace = True)
 mapa_shp.replace('Saint Vincent and the Grenadines', 'St. Vincent Grenadines', inplace = True)
+mapa_shp.replace('United States Virgin Islands', 'U.S. Virgin Islands ', inplace = True)
 
 #Renomear o nome da coluna(Paises) no ficheiro dados_casos
 dados_casos.rename(columns = {'Country,Other': 'NAME'}, inplace = True)
